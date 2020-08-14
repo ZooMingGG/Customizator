@@ -1,0 +1,12 @@
+# .map files exception
+*.map
+
+# .jshint exception
+*.jshintrc
+ 
+#node_modules exception
+package-lock.json
+node_modules
+
+#dist exception
+dist
