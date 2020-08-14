@@ -9,7 +9,6 @@ const cleanCSS = require("gulp-clean-css");
 const postcss = require("gulp-postcss");
 
 const dist = "./dist/";
-const prod = "./build/";
 
 gulp.task("copy-html", () => {
     return gulp.src("./src/index.html")
@@ -80,9 +79,9 @@ gulp.task("build", gulp.parallel("copy-html", "copy-assets", "build-sass", "buil
 
 gulp.task("prod", () => {
     gulp.src("./src/index.html")
-        .pipe(gulp.dest(prod));
+        .pipe(gulp.dest(dist));
     gulp.src("./src/assets/**/*.*")
-        .pipe(gulp.dest(prod + "/assets"));
+        .pipe(gulp.dest(dist + "assets/"));
 
     gulp.src("./src/js/index.js")
         .pipe(webpack({
@@ -115,7 +114,7 @@ gulp.task("prod", () => {
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss([autoprefixer()]))
         .pipe(cleanCSS())
-        .pipe(gulp.dest(dist + 'js/'));
+        .pipe(gulp.dest(dist + 'assets/css/'));
 });
 
 gulp.task("default", gulp.parallel("watch", "build"));
